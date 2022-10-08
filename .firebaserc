@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "gearmoney-54d6a": {
+      "hosting": {
+        "ourmoney": [
+          "gearmoney-54d6a"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "gearmoney-54d6a"
+  }
+}
