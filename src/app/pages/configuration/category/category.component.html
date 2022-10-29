@@ -1,0 +1,12 @@
+<mat-list>
+    <ng-container *ngFor="let category of categories">
+        <mat-list-item [routerLink]="'/category-form/' + category.id">
+            <i mat-list-icon class="fa fa-circle" [ngStyle]="{'color': category.color}"></i>
+            <div mat-line>{{category.name}}</div>
+        </mat-list-item>
+    </ng-container>
+</mat-list>
+
+<div class="float-fab">
+    <button mat-fab color="accent" routerLink="/category-form"><i class="fa fa-plus fa-2x"></i></button>
+</div>

@@ -1,4 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+.float-fab {
+    z-index: 10;
+    position: fixed;
+    right: 30px;
+    bottom: 15px;
+}
+
+.form-container {
+    margin: 2rem;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.form-button {
+    display: flex;
+    justify-content: center;
+}
+.form-button button, .form-button a {
+    margin: 1%;
+    width: 48%;
+    height: 3rem;
+    line-height: 3rem;;
+}

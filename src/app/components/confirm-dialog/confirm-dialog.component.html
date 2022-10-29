@@ -1,0 +1,13 @@
+<div class="dialog-content">
+  <h3 mat-dialog-title class="center-align">{{ text }}</h3>
+  <mat-dialog-actions class="center-flex">
+    <button *ngIf="type == 'delete'" mat-raised-button color="warn" [disabled]="isLoading" (click)="startAction()">
+      {{ isLoading ? "Eliminando..." : "Eliminar" }}
+    </button>
+    <button *ngIf="type == 'info' || type == 'confirm'" mat-raised-button color="primary" [disabled]="isLoading"
+      (click)="startAction()">
+      Aceptar
+    </button>
+    <button *ngIf="type != 'info'" mat-raised-button (click)="close()">Cancelar</button>
+  </mat-dialog-actions>
+</div>

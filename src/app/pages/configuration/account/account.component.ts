@@ -1,6 +1,10 @@
+import { identifierName } from "@angular/compiler";
 import { Component, OnInit } from "@angular/core";
+import { QuerySnapshot } from "@angular/fire/firestore";
 import { Account } from "src/app/models/account.model";
 import { AccountService } from "src/app/services/account.service";
+import { ApplicationService } from "src/app/services/application.service";
+import { ErrorUtils } from "src/app/utils/error.utils";
 
 
 
@@ -11,9 +15,16 @@ import { AccountService } from "src/app/services/account.service";
 })
 
 export class AccountComponent implements OnInit {
-    constructor(private accountService: AccountService) { }
+
+    accounts: Account[] = [];
+
+    constructor(private accountService: AccountService, private _appService: ApplicationService) {
+        this._appService.setBackArrowRoute('');
+        this._appService.setNavBar('Cuentas');
+    }
 
     ngOnInit(): void {
+        this._getAll();
         /*
         //CReATE
         const myAccount: Account = {
@@ -68,12 +79,21 @@ this.accountService.get('9GbHxIJbZzsT70JGT2A2').subscribe(
 
 
         //delete
-        this.accountService.delete('9GbHxIJbZzsT70JGT2A2').then(result => {
+
+        /*this.accountService.delete('9GbHxIJbZzsT70JGT2A2').then(result => {
             console.log('DELETED result', result);
         }).catch(error => {
             console.log('error', error)
         })
+        */
 
+    }
 
+    private _getAll(): void {
+        this.accountService.getAll()
+            .then((result: QuerySnapshot<Account>) => this.accounts = result.docs.map((item) => {
+                return { ...item.data(), id: item.id }
+            }))
+            .catch(error => ErrorUtils.handleError(error));
     }
 }

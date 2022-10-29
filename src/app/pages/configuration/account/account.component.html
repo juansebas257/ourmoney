@@ -1,1 +1,13 @@
-hello
+<mat-list>
+    <ng-container *ngFor="let account of accounts">
+        <mat-list-item [routerLink]="'/account-form/' + account.id">
+            <i mat-list-icon class="fa fa-wallet" [ngStyle]="{'color': account.color}"></i>
+            <div mat-line>{{account.name}}</div>
+            <div mat-line> subtext</div>
+        </mat-list-item>
+    </ng-container>
+</mat-list>
+
+<div class="float-fab">
+    <button mat-fab color="accent" routerLink="/account-form"><i class="fa fa-plus fa-2x"></i></button>
+</div>
