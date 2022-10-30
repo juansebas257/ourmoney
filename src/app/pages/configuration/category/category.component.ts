@@ -15,7 +15,9 @@ import { ErrorUtils } from "src/app/utils/error.utils";
 
 export class CategoryComponent implements OnInit {
 
-    categories: Category[] = [];
+    expenseCategories: Category[] = [];
+    earningCategories: Category[] = [];
+
 
     constructor(private categoryService: CategoryService, private _appService: ApplicationService) {
         this._appService.setBackArrowRoute('');
@@ -28,9 +30,13 @@ export class CategoryComponent implements OnInit {
 
     private _getAll(): void {
         this.categoryService.getAll()
-            .then((result: QuerySnapshot<Category>) => this.categories = result.docs.map((item) => {
-                return { ...item.data(), id: item.id }
-            }))
+            .then((result: QuerySnapshot<Category>) => {
+                const categories = result.docs.map((item) => {
+                    return { ...item.data(), id: item.id }
+                });
+                this.expenseCategories = categories.filter(item => item.type === 1);
+                this.earningCategories = categories.filter(item => item.type === 2);
+            })
             .catch(error => ErrorUtils.handleError(error));
     }
 }

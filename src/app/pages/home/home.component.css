@@ -1,0 +1,11 @@
+.float-expense {
+    bottom: 85px;
+}
+
+.float-incoming {
+    bottom: 155px;
+}
+
+.float-transfer {
+    bottom: 225px;
+}

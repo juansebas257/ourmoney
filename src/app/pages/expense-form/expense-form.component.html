@@ -1,0 +1,63 @@
+<div class="form-container">
+    <app-spinner *ngIf="isLoading"></app-spinner>
+
+    <ng-container *ngIf="!isLoading">
+        <form [formGroup]="form" (ngSubmit)="save()">
+
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha</mat-label>
+                <input matInput formControlName="date" type="date">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Valor</mat-label>
+                <input matInput formControlName="value" type="number" step="1" min="1">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Categoría</mat-label>
+                <mat-select formControlName="category">
+                    <mat-option *ngFor="let category of categories" [value]="category.id">
+                        {{ category.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Descripción</mat-label>
+                <input matInput formControlName="description">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Cuenta</mat-label>
+                <mat-select formControlName="account">
+                    <mat-option *ngFor="let account of accounts" [value]="account.id">
+                        {{ account.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <div class="toggle-form">
+                <mat-slide-toggle formControlName="recurring" (change)="onUpdatedRecurring()">Gasto recurrente</mat-slide-toggle>
+            </div>
+
+            <div class="toggle-form">
+                <mat-slide-toggle formControlName="repetitive" (change)="onUpdatedRepetitive()">Gasto repetitivo</mat-slide-toggle>
+            </div>
+
+            <mat-form-field *ngIf="form.controls['repetitive'].value === true" appearance="fill">
+                <mat-label>Repeticiones</mat-label>
+                <input matInput formControlName="repetitions" type="number" step="1">
+            </mat-form-field>
+
+            <div class="form-button">
+                <a *ngIf="isEditing" mat-raised-button color="warn" [disabled]="isLoading" (click)="onConfirmDelete()">
+                    Eliminar
+                </a>
+                <button mat-raised-button color="primary" [disabled]="isLoading || form.invalid">
+                    Guardar
+                </button>
+            </div>
+        </form>
+    </ng-container>
+</div>

@@ -26,6 +26,12 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { CategoryFormComponent } from './pages/configuration/category/category-form/category-form.component';
 import { CategoryComponent } from './pages/configuration/category/category.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatSelectModule } from '@angular/material/select';
+import { HomeComponent } from './pages/home/home.component';
+import { ExpenseFormComponent } from './pages/expense-form/expense-form.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { IncomingFormComponent } from './pages/incoming-form/incoming-form.component';
 
 @NgModule({
   declarations: [
@@ -33,10 +39,13 @@ import { CategoryComponent } from './pages/configuration/category/category.compo
     MessageDialogComponent,
     ConfirmDialogComponent,
     SpinnerComponent,
+    HomeComponent,
     AccountComponent,
     AccountFormComponent,
     CategoryComponent,
-    CategoryFormComponent
+    CategoryFormComponent,
+    ExpenseFormComponent,
+    IncomingFormComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +63,9 @@ import { CategoryComponent } from './pages/configuration/category/category.compo
     MatSnackBarModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+    MatTabsModule,
+    MatSelectModule,
+    MatSlideToggleModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
   ],

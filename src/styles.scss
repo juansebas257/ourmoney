@@ -30,9 +30,20 @@ body {
     display: flex;
     justify-content: center;
 }
-.form-button button, .form-button a {
+
+.form-button button,
+.form-button a {
     margin: 1%;
     width: 48%;
     height: 3rem;
-    line-height: 3rem;;
+    line-height: 3rem;
+    ;
+}
+
+.green-button {
+    background-color: #4CAF50 !important;
+}
+
+.toggle-form {
+    margin: 2rem 0;
 }

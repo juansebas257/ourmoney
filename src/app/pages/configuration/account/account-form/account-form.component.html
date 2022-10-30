@@ -16,7 +16,7 @@
                 <a *ngIf="isEditing" mat-raised-button color="warn" [disabled]="isLoading" (click)="onConfirmDelete()">
                     Eliminar
                 </a>
-                <button mat-raised-button color="primary" [disabled]="isLoading">
+                <button mat-raised-button color="primary" [disabled]="isLoading || form.invalid">
                     Guardar
                 </button>
             </div>

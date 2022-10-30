@@ -19,7 +19,7 @@ export class AppComponent {
   selectedMenu: string = '';
   toastConfiguration: Object = {
     duration: 3000,
-    verticalPosition: 'bottom',
+    verticalPosition: 'top',
     horizontalPosition: 'center',
   }
 

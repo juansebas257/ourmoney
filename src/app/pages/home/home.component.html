@@ -1,0 +1,23 @@
+<div *ngIf="!buttonsDisplayed" class="float-fab">
+    <button mat-fab color="accent" (click)="buttonsDisplayed = true"><i class="fa fa-plus fa-2x"></i></button>
+</div>
+
+<div *ngIf="buttonsDisplayed" class="float-fab">
+    <button mat-fab color="accent" (click)="buttonsDisplayed = false"><i class="fa fa-chevron-down fa-2x"></i></button>
+</div>
+
+<ng-container *ngIf="buttonsDisplayed">
+    <div class="float-fab float-expense">
+        <button mat-fab color="warn" routerLink="/expense-form"><i class="fa fa-money-bill fa-2x"></i></button>
+    </div>
+
+    <div class="float-fab float-incoming">
+        <button mat-fab color="primary" class="green-button" routerLink="/incoming-form"><i
+                class="fa fa-money-bill fa-2x"></i></button>
+    </div>
+
+    <div class="float-fab float-transfer">
+        <button mat-fab color="primary" routerLink="/expense-form"><i
+                class="fa fa-money-bill-transfer fa-2x"></i></button>
+    </div>
+</ng-container>

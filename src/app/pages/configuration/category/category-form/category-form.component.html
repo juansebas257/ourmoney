@@ -3,20 +3,31 @@
 
     <ng-container *ngIf="!isLoading">
         <form [formGroup]="form" (ngSubmit)="save()">
+
             <mat-form-field appearance="fill">
                 <mat-label>Nombre</mat-label>
                 <input matInput formControlName="name">
             </mat-form-field>
+
             <mat-form-field appearance="fill">
                 <mat-label>Color</mat-label>
                 <input matInput type="color" formControlName="color">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Tipo</mat-label>
+                <mat-select formControlName="type">
+                    <mat-option *ngFor="let type of categoryTypes" [value]="type.id">
+                        {{ type.name }}
+                    </mat-option>
+                </mat-select>
             </mat-form-field>
 
             <div class="form-button">
                 <a *ngIf="isEditing" mat-raised-button color="warn" [disabled]="isLoading" (click)="onConfirmDelete()">
                     Eliminar
                 </a>
-                <button mat-raised-button color="primary" [disabled]="isLoading">
+                <button mat-raised-button color="primary" [disabled]="isLoading || form.invalid">
                     Guardar
                 </button>
             </div>
