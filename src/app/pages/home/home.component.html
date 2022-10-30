@@ -1,3 +1,14 @@
+<mat-list>
+    <ng-container *ngFor="let item of items">
+        <mat-list-item>
+            <i mat-list-icon class="fa fa-circle" [ngStyle]="{'color': categories[item.category]?.color}"></i>
+            <div mat-line>{{ item.description }}</div>
+            <div mat-line [ngClass]="{ 'red-text': item.type === 1, 'green-text': item.type === 2}">{{ item.value |
+                currency : 'USD' : 'symbol' : '1.0-0' }}</div>
+        </mat-list-item>
+    </ng-container>
+</mat-list>
+
 <div *ngIf="!buttonsDisplayed" class="float-fab">
     <button mat-fab color="accent" (click)="buttonsDisplayed = true"><i class="fa fa-plus fa-2x"></i></button>
 </div>
@@ -21,3 +32,7 @@
                 class="fa fa-money-bill-transfer fa-2x"></i></button>
     </div>
 </ng-container>
+<br>
+<br>
+<br>
+<br>

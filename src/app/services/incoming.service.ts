@@ -15,7 +15,7 @@ import {
 import { Firestore, collectionData, DocumentSnapshot, docData } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Category } from '../models/category.model';
+import { Incoming } from '../models/incoming.model';
 
 @Injectable({
     providedIn: 'root',
@@ -23,11 +23,11 @@ import { Category } from '../models/category.model';
 
 export class IncomingService {
     private collectionName: string = 'incomings';
-    private collectionRef: CollectionReference<Category> = collection(this.firestore, this.collectionName) as CollectionReference<Category>;
+    private collectionRef: CollectionReference<Incoming> = collection(this.firestore, this.collectionName) as CollectionReference<Incoming>;
 
     constructor(private readonly firestore: Firestore) { }
 
-    create(document: Category): Promise<any> {
+    create(document: Incoming): Promise<any> {
         return addDoc(this.collectionRef, document);
     }
 
@@ -36,12 +36,12 @@ export class IncomingService {
         return deleteDoc(documentReference);
     }
 
-    getAll(): Promise<QuerySnapshot<Category>> {
+    getAll(): Promise<QuerySnapshot<Incoming>> {
         const q = query(this.collectionRef);
         return getDocs(q);
     }
 
-    getAllAndSync(): Observable<Category[]> {
+    getAllAndSync(): Observable<Incoming[]> {
         collection(this.firestore, this.collectionName).withConverter
         return collectionData(this.collectionRef, { idField: 'id' });
     }
@@ -51,17 +51,17 @@ export class IncomingService {
         return getDoc(documentReference);
     }
 
-    getAndSync(id: string): Observable<Category> {
+    getAndSync(id: string): Observable<Incoming> {
         const documentReference = doc(this.firestore, `${this.collectionName}/${id}`);
-        return docData(documentReference, { idField: 'id' }) as Observable<Category>;
+        return docData(documentReference, { idField: 'id' }) as Observable<Incoming>;
     }
 
-    filter(): Promise<QuerySnapshot<Category>> {
+    filter(): Promise<QuerySnapshot<Incoming>> {
         const q = query(this.collectionRef, where("color", "==", '#ff0000'));
         return getDocs(q);
     }
 
-    update(document: Category): Promise<void> {
+    update(document: Incoming): Promise<void> {
         const documentReference = doc(this.firestore, `${this.collectionName}/${document.id}`);
         return updateDoc(documentReference, { ...document });
     }

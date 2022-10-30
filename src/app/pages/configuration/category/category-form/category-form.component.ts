@@ -31,7 +31,7 @@ export class CategoryFormComponent implements OnInit {
     constructor(private categoryService: CategoryService, private router: Router, private _appService: ApplicationService, private _activatedRoute: ActivatedRoute, public dialog: MatDialog) {
         this.form = new FormGroup({
             name: new FormControl(null, Validators.required),
-            color: new FormControl(null, Validators.required),
+            color: new FormControl('#000000', Validators.required),
             type: new FormControl(null, Validators.required)
         });
 
