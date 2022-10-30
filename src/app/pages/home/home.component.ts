@@ -12,6 +12,7 @@ export class HomeComponent {
     buttonsDisplayed: boolean = false;
 
     constructor(private _appService: ApplicationService) {
+        this._appService.setBackArrowRoute('');
         _appService.setNavBar('Inicio');
     }
 }
