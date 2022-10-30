@@ -1,11 +1,18 @@
 <mat-list>
-    <ng-container *ngFor="let item of items">
-        <mat-list-item>
-            <i mat-list-icon class="fa fa-circle" [ngStyle]="{'color': categories[item.category]?.color}"></i>
-            <div mat-line>{{ item.description }}</div>
-            <div mat-line [ngClass]="{ 'red-text': item.type === 1, 'green-text': item.type === 2}">{{ item.value |
-                currency : 'USD' : 'symbol' : '1.0-0' }}</div>
-        </mat-list-item>
+    <ng-container *ngFor="let keyDate of arrayDates">
+        <div mat-subheader>
+            {{ keyDate }}
+        </div>
+
+        <ng-container *ngFor="let item of groupedItems[keyDate]">
+            <mat-list-item>
+                <i mat-list-icon class="fa fa-circle" [ngStyle]="{'color': categories[item.category]?.color}"></i>
+                <div mat-line>{{ item.description }}</div>
+                <div mat-line [ngClass]="{ 'red-text': item.type === 1, 'green-text': item.type === 2}">{{ item.value |
+                    currency : 'USD' : 'symbol' : '1.0-0' }}</div>
+            </mat-list-item>
+        </ng-container>
+        <br>
     </ng-container>
 </mat-list>
 

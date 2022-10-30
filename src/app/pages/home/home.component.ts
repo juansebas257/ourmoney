@@ -18,6 +18,8 @@ export class HomeComponent implements OnInit {
 
     buttonsDisplayed: boolean = false;
     items: any[] = [];
+    groupedItems: any = {};
+    arrayDates: string[] = [];
     categories: any = {};
 
     constructor(private _appService: ApplicationService, private _expenseService: ExpenseService, private _incomingService: IncomingService, private _categoryService: CategoryService) {
@@ -58,7 +60,30 @@ export class HomeComponent implements OnInit {
                     return { ...item.data(), id: item.id, type: 2 }
                 });
                 this.items = this.items.concat(incomings);
+                this._formatData();
             })
             .catch(error => ErrorUtils.handleError(error));
     }
+
+    private _formatData() {
+        this.items.forEach((item: any) => {
+            if (!this.groupedItems[item.date]) {
+                this.groupedItems[item.date] = [];
+            }
+            this.groupedItems[item.date].push(item);
+        });
+
+        this.groupedItems = this._sortObject(this.groupedItems);
+
+        this.arrayDates = Object.keys(this.groupedItems);
+    }
+
+
+    private _sortObject(obj: any) {
+        return Object.keys(obj).sort().reduce(function (result: any, key) {
+            result[key] = obj[key];
+            return result;
+        }, {});
+    }
+
 }
